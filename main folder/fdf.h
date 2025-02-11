@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/05 18:47:21 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:58:10 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,21 @@ typedef struct s_win
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
-	int			width;
-	int			height;
+	// int		width;
+	// int		height;
 }	t_win;
+
+typedef struct s_myimg
+{
+	void		*nimg;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}	t_myimg;
 
 //
 
 #endif
-// cc starting.c -o my_program fdf.a minilibx-linux/libmlx.a -lm -lX11 -lXext
+
+// valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all
