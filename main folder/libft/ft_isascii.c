@@ -6,6 +6,16 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/04 15:37:28 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:33:06 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
+}

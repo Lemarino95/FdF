@@ -6,6 +6,15 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/04 15:37:28 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:32:44 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isdigit(int c)
+{
+	if (!(c >= 48 && c <= 57))
+		return (0);
+	return (1);
+}
