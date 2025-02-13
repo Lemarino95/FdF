@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/11 16:32:40 by lemarino         ###   ########.fr       */
+/*   Created: 2024/10/27 22:20:06 by lemarino          #+#    #+#             */
+/*   Updated: 2024/11/26 10:46:20 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,11 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
+// a-z=65-90  A-Z=97-122
+/* int	main(void)
+{
+	int	art = -1;
+	
+	printf("%d\n", ft_isalpha(art));
+	printf("%d\n", isalpha(art));
+} */

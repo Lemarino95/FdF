@@ -1,9 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = fdf
 OBJ_DIR = obj
 
-SRC_MAIN = starting.c
+SRC_MAIN = fdf_main.c fdf_drawline.c fdf_readmap.c
 
 
 OBJECTS_MAIN = $(SRC_MAIN:%.c=$(OBJ_DIR)/%.o)

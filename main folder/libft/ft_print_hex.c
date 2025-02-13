@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:22:57 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/04 15:37:28 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:35:42 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_putnbr_hex(unsigned int nbr, const char format)
 	{
 		if (nbr <= 9)
 			ft_putchar_fd((nbr + '0'), 1);
-		else// 10<=nbr<=15, turns it in the ASCII number of the corresponding lowcase letter
+		else
 		{
 			if (format == 'x')
 				ft_putchar_fd((nbr - 10 + 'a'), 1);

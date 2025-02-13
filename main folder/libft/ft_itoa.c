@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/06 21:31:52 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:31:16 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static char	*ft_placenbr(char *s, size_t c, int n)
 }
 
 //Allocates (with malloc) and returns a string
-//	representing the integer received as an argument, or NULL if the allocation fails.
+//	representing the integer received as an argument,
+// or NULL if the allocation fails.
 char	*ft_itoa(int n)
 {
 	char		*str;
