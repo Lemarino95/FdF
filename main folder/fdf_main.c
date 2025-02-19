@@ -6,12 +6,27 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:17:42 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/18 20:10:37 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:24:00 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void	**freemtrx(void **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
+}
+
+//Close window
 static int	handle_destroy(void *param)
 {
 	t_myimg	*mlx;
@@ -24,7 +39,6 @@ static int	handle_destroy(void *param)
  
 int	main(int ac, char **av)
 {
-	// t_win	win;
 	t_myimg	img;
 
 	if (ac != 2)
@@ -39,12 +53,14 @@ int	main(int ac, char **av)
 	img.addr = mlx_get_data_addr(img.nimg, &img.bits_per_pixel,\
 					&img.line_length, &img.endian);
 	img.map = cartography(av[1]);
-	img.zoom = 20;
+	img.zoom = 20;//##########ZooM#############
 	img.height = get_height(av[1]);//errore con linee vuote
 	img.width = get_width(av[1]);//errore con spazi alla fine della prima riga
-	printf("Map size(h*w) = %dx%d\n", img.height, img.width);//######
+	printf(YELLOW "Map size(h*w) = %dx%d\n" NO_COLOR, img.height, img.width);//######
+	printf("color control");
 	draw(&img);
 	mlx_put_image_to_window(img.mlx_ptr, img.mlx_win, img.nimg, 0, 0);
 	mlx_hook(img.mlx_win, 17, 0, handle_destroy, &img);
 	mlx_loop(img.mlx_ptr);
+	freemtrx((void **)img.map);
 }

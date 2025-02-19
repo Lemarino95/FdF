@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 NAME = fdf
 OBJ_DIR = obj
 
-SRC_MAIN = fdf_main.c fdf_drawline.c fdf_readmap.c
+SRC_MAIN = fdf_readmap.c fdf_mapsizes.c fdf_main.c fdf_drawline.c
 
 
 OBJECTS_MAIN = $(SRC_MAIN:%.c=$(OBJ_DIR)/%.o)
@@ -16,9 +16,13 @@ MLX_DIR =  minilibx-linux
 MINILIBX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -lm -lX11 -lXext
 
+NO_COLOR = \033[0m
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
 
 all: $(NAME)
-	@echo "Object files created!"
+	@echo "$(GREEN)Object files created!$(NO_COLOR)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -43,12 +47,12 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@	${CC} -c ${CFLAGS} -I. -I$(LIBFT_DIR) -I$(MLX_DIR) $< -o $@
 
 clean:
-	@echo "Cleaning..."
+	@echo "$(YELLOW)Cleaning...$(NO_COLOR)"
 	@	rm -rf $(OBJECTS) $(OBJ_DIR)
 	@	$(MAKE) -C $(LIBFT_DIR) clean --quiet
 
 fclean: clean
-	@echo "Full Cleaning..."
+	@echo "$(RED)Full Cleaning...$(NO_COLOR)"
 	@	rm -rf $(OBJ_DIR) $(NAME)
 	@	$(MAKE) -C $(LIBFT_DIR) fclean --quiet
 

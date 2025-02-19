@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/18 19:57:32 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:43:28 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	draw(t_myimg *img)
 		while (x < img->width)
 		{
 			if (x < img->width - 1)
-				ft_bresenham(img, x, y, x + 1, y, rgb_to_int(63, 210, 66));
+				ft_bresenham(img, x, y, x + 1, y, rgb_to_int(93, 21, 194));
 			if (y < img->height - 1)
 				ft_bresenham(img, x, y, x, y + 1, rgb_to_int(63, 210, 66));
 			x++;
