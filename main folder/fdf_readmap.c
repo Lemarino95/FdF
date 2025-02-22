@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:29:27 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/19 15:58:21 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:39:56 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,47 @@ static char	**freesplit(char **s)
 	return (NULL);
 }
 
-// Converts each point of the map file in an int and returns it as a matrix.
-int	**cartography(char *map_file)
+//Converts each number of the map file in an int and returns it as
+// a matrix of z-axis values.
+static int **mtrx_creator(t_read *mapper, int **map)
 {
 	t_read	mapping;
 	int		i;
 	int		j;
-	int		**map;
-
 	i = 0;
-	map = NULL;
-	mapping.fd = open(map_file, O_RDONLY);
-	while ((mapping.line = get_next_line(mapping.fd)))
+	
+	mapping.line = get_next_line(mapper->fd);
+	while (mapping.line)
 	{
 		j = 0;
 		map = ft_realloc(map, ((i + 1) * sizeof(int *)));
-		mapping.line = ft_strtrim(mapping.line, "\n");
-		mapping.splitted_line = ft_split(mapping.line, ' ');
-		map[i] = malloc(count_words(mapping.line, ' ') * sizeof(int));
+		mapping.line2 = ft_strtrim(mapping.line, "\n");
+		mapping.splitted_line = ft_split(mapping.line2, ' ');
+		map[i] = malloc(count_words(mapping.line2, ' ') * sizeof(int));
 		while (mapping.splitted_line[j])
 		{
 			map[i][j] = ft_atoi(mapping.splitted_line[j]);
 			j++;
 		}
 		i++;
+		free(mapping.line2);
+		freesplit(mapping.splitted_line);
+		mapping.line = get_next_line(mapper->fd);
 	}
-	freesplit(mapping.splitted_line);
-	close (mapping.fd);
-	return (free(mapping.line), map);
+	return (map);
+}
+
+//Initializes and returns the map matrix.
+int	**cartography(char *map_file)
+{
+	t_read	mapper;
+	int		**map;
+
+	map = NULL;
+	mapper.fd = open(map_file, O_RDONLY);
+	map = mtrx_creator(&mapper, map);
+	close (mapper.fd);
+	return (map);
 }
 
 /* int	main(int argc, char *argv[])
