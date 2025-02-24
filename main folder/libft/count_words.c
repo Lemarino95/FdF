@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   count_words.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/24 15:52:12 by lemarino         ###   ########.fr       */
+/*   Created: 2025/02/24 15:07:19 by lemarino          #+#    #+#             */
+/*   Updated: 2025/02/24 15:07:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// Returns a pointer to the last occurrence of the character c in the string s.
-char	*ft_strrchr(const char *s, int c)
+
+int	count_words(const char *str, char c)
 {
 	int	i;
+	int	words;
 
-	i = ft_strlen(s);
-	while (i >= 0)
+	i = 0;
+	words = 0;
+	while (str[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i--;
+		while (str[i] && str[i] == c)
+			i++;
+		if (str[i])
+			words++;
+		while (str[i] && str[i] != c)
+			i++;
 	}
-	if ((char)c == 0)
-		return ((char *)s);
-	return (NULL);
+	return (words);
 }

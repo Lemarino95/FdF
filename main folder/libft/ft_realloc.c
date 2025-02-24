@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:51:20 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/03 16:51:20 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:37:00 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ memory  will  not  be  initialized.   If  ptr is NULL, then the call is equivale
 loc(size), for all values of size; if size is equal to zero, and ptr is not NULL, then the
 call  is  equivalent  to  free(ptr).
 Unless ptr is NULL, it must have been re turned by an earlier call to malloc(), calloc(), or realloc().*/
-void	*ft_realloc(void *ptr, size_t size)
+void		*ft_realloc(void *ptr, size_t size)
 {
 	void	*new_ptr;
 
