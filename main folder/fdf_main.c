@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:17:42 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/22 20:05:56 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:41:36 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	main(int ac, char **av)
 		&img.line_length, &img.endian);
 	img.zoom = 20;//##########ZooM#############
 	handle_input(&img);
-	img.map = cartography(av[1]);
+	img.map = cartography(av[1], 1);
+	img.colmap = cartography(av[1], 2);
+	img.colmap = cartography(av[1], 2);
 	img.height = get_height(av[1]);//errore con linee vuote
 	img.width = get_width(av[1]);//errore con spazi alla fine della prima riga
 	printf(YELLOW "Map size(h*w) = %dx%d\n" NO_COLOR, img.height, img.width);//######

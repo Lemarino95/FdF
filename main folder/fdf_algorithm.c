@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/22 20:21:19 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:57:42 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_setscale(t_myimg *img, double *x0, double *y0, double *x1, double
 //Applies isometric pojection.
 void	ft_isometry(double *x, double *y, double z)
 {
-	double	prev_x = *x;//double?
+	double	prev_x = *x;
 	double	prev_y = *y;
 	
 	*x = (prev_x - prev_y) * cos(0.523599);//90^*(pi/180) == 1,5708 rad
@@ -78,17 +78,23 @@ void	draw(t_myimg *img)
 {
 	double	x;
 	double	y;
+	double	x1;
+	double	y1;
 
 	y = 0;
 	while (y < img->height)
 	{
 		x = 0;
+		y1 = y +1;
 		while (x < img->width)
 		{
+			x1 = x + 1;
 			if (x < img->width - 1)
-				ft_bresenham(img, x, y, x + 1, y, rgb_to_int(93, 21, 194));
+				ft_bresenham(img, x, y, x1, y, img->colmap[(int)y][(int)x]);
+				// ft_bresenham(img, x, y, x + 1, y, rgb_to_int(0, 187, 255));
 			if (y < img->height - 1)
-				ft_bresenham(img, x, y, x, y + 1, rgb_to_int(63, 210, 66));
+				ft_bresenham(img, x, y, x, y1, img->colmap[(int)y][(int)x]);
+				// ft_bresenham(img, x, y, x, y + 1, rgb_to_int(63, 210, 66));
 			x++;
 		}
 		y++;
