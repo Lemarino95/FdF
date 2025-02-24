@@ -44,7 +44,7 @@ void ft_backtoblack(t_myimg *img)// vedere mlx_dosync()
 	double	x;
 	double	y;
 
-	printf(RED"CANCELLIAMO?"NO_COLOR);//##############
+	/*printf(RED"CANCELLIAMO?"NO_COLOR);//##############
 	y = 0;
 	while (y < img->height)
 	{
@@ -58,8 +58,8 @@ void ft_backtoblack(t_myimg *img)// vedere mlx_dosync()
 			x++;
 		}
 		y++;
-	}
-	/* double	x;
+	}*/
+	double	x;
 	double	y;
 	char	*dst;
 
@@ -75,5 +75,5 @@ void ft_backtoblack(t_myimg *img)// vedere mlx_dosync()
 			x++;
 		}
 		y++;
-	} */
+	}
 }
