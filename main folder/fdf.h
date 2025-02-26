@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/24 21:53:40 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/26 22:08:06 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "mlx_int.h"
 # include <math.h>
 # include <X11/keysym.h>
+# include <X11/keysymdef.h>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MACROS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -47,6 +48,8 @@ typedef struct s_myimg
 	int			line_length;
 	int			endian;
 	int			zoom;
+	int			t_x;
+	int			t_y;
 	int			**map;
 	int			**colmap;
 	int			height;
@@ -65,6 +68,8 @@ typedef struct s_read
 // Variables used for calculations in the pixelputting algorithm.
 typedef struct s_math
 {
+	int		i;
+	int		j;
 	double	x;
 	double	y;
 	double	x1;
@@ -80,26 +85,20 @@ typedef struct s_math
 
 int		rgb_to_int(double r, double g, double b);
 int		**cartography(char *map_file, int select);
-// int		count_words(const char *str, char c);
 int		get_height(char *map_file);
 int		get_width(char *map_file);
 void	draw(t_myimg *img);
-void	ft_bresenham(t_myimg *img, double x0, double y0, double x1, double y1, \
-							int color);
-void	to_northwest(double x0, double x1, double y0, double y1, t_myimg img, \
-							t_math *math, int color);
-void	to_northeast(double x0, double x1, double y0, double y1, t_myimg img, \
-							t_math *math, int color);
-void	to_southwest(double x0, double x1, double y0, double y1, t_myimg img, \
-							t_math *math, int color);
-void	to_southeast(double x0, double x1, double y0, double y1, t_myimg img, \
-							t_math *math, int color);
+void	ft_bresenham(t_myimg *img, t_math *math, int color);
+void	to_northwest(t_myimg img, t_math *math, int color);
+void	to_northeast(t_myimg img, t_math *math, int color);
+void	to_southwest(t_myimg img, t_math *math, int color);
+void	to_southeast(t_myimg img, t_math *math, int color);
 void	handle_input(t_myimg *img);
 int		close_all(t_myimg *img);
 void	ft_backtoblack(t_myimg *img);
 
 #endif
 
-// valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all
+// valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all 
 
 // /usr/include/X11/keysymdef.h

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:41:03 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/24 11:10:23 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/26 22:37:42 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	close_all(t_myimg *img)
 	mlx_destroy_display(img->mlx_ptr);
 	free(img->mlx_ptr);
 	freemap(img->map, img);
+	freemap(img->colmap, img);
 	exit (0);
 	return (0);
 }

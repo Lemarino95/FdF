@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:29:27 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/24 21:31:44 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:49:50 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static char	**freesplit(char **s)
 	free(s);
 	return (NULL);
 }
+
 static int	convert_hexa(char *str)
 {
 	if (ft_strchr2(str, 'x'))
-		return (ft_atoi_hex(ft_strchr2(str, 'x')));
+		return (ft_atoi_base(ft_strchr2(str, 'x'), 16));
 	else
 		return (48127);
 }
-
 
 //Converts each number following a comma in the map file in an int and returns
 // it as a matrix of color values.
@@ -43,11 +43,13 @@ int	**col_mtrx_creator(t_read *mapper, int **map)
 	int		j;
 
 	i = 0;
-	mapping.line = get_next_line(mapper->fd);
-	while (mapping.line)
+	while (1)
 	{
+		mapping.line = get_next_line(mapper->fd);
+		if (!mapping.line)
+			break ;
 		j = 0;
-		map = ft_realloc(map, ((i + 1) * sizeof(int *)));
+		map = ft_realoc(map, ((i) * sizeof(int *)), ((i + 1) * sizeof(int *)));
 		mapping.line2 = ft_strtrim(mapping.line, "\n");
 		mapping.splitted_line = ft_split(mapping.line2, ' ');
 		map[i] = malloc(count_words(mapping.line2, ' ') * sizeof(int));
@@ -59,7 +61,6 @@ int	**col_mtrx_creator(t_read *mapper, int **map)
 		i++;
 		free(mapping.line2);
 		freesplit(mapping.splitted_line);
-		mapping.line = get_next_line(mapper->fd);
 	}
 	return (map);
 }
@@ -71,13 +72,13 @@ int	**z_mtrx_creator(t_read *mapper, int **map)
 	t_read	mapping;
 	int		i;
 	int		j;
+
 	i = 0;
-	
 	mapping.line = get_next_line(mapper->fd);
 	while (mapping.line)
 	{
 		j = 0;
-		map = ft_realloc(map, ((i + 1) * sizeof(int *)));
+		map = ft_realoc(map, ((i) * sizeof(int *)), ((i + 1) * sizeof(int *)));
 		mapping.line2 = ft_strtrim(mapping.line, "\n");
 		mapping.splitted_line = ft_split(mapping.line2, ' ');
 		map[i] = malloc(count_words(mapping.line2, ' ') * sizeof(int));
