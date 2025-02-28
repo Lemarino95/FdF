@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 22:08:11 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:31:36 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,18 @@ static void	ft_setscale(t_myimg *img, t_math *math)
 }
 
 //Applies isometric poxection.
-void	ft_isometry(double *x, double *y, double z)
+void	ft_isometry(double *x, double *y, double *z)
 {
-	double	prev_x = *x;
-	double	prev_y = *y;
-	
-	*x = (prev_x - prev_y) * cos(0.523599);//90^*(pi/180) == 1,5708 rad
-	*y = (prev_x + prev_y) * sin(0.523599) - z; //30^*(pi/180) == 0.523599 rad
+	double	prev_x;
+	double	prev_y;
+	double	prev_z;
+
+	prev_x = *x;
+	prev_y = *y;
+	prev_z = *z;
+	*x = (prev_x - prev_y) * cos(0.523599);//180^*(pi/180) == 3.14159 rad
+	*y = (prev_x + prev_y) * sin(0.523599) - prev_z; //30^*(pi/180) == 0.523599 rad
+	// z = prev_z * cos(0.523599) - prev_x * sin(0.523599);
 }
 
 // Determines in which direction the line is to be drawn.
@@ -55,8 +60,10 @@ static void	ft_setdirection(t_math *math)
 // Algorithm to trace a line from xy to x1y1.
 void	ft_bresenham(t_myimg *img, t_math *math, int color)
 {
-	ft_isometry(&math->x, &math->y, img->map[(int)math->y][(int)math->x]);//determinare il colore in ft_isometry?
-	ft_isometry(&math->x1, &math->y1, img->map[(int)math->y1][(int)math->x1]);
+	math->z = img->map[(int)math->y][(int)math->x];
+	math->z1 = img->map[(int)math->y1][(int)math->x1];
+	ft_isometry(&math->x, &math->y, &math->z);//determinare il colore in ft_isometry?
+	ft_isometry(&math->x1, &math->y1, &math->z1);
 	ft_setscale(img, math);
 	math->dx = fabs(math->x1 - math->x);
 	math->dy = fabs(math->y1 - math->y);
@@ -74,7 +81,7 @@ void	ft_bresenham(t_myimg *img, t_math *math, int color)
 
 //Applies an alghorithm to print and connect the current point to those 
 // on the right and below.
-static void	draw2(/* int i, int j,  */t_myimg *img, t_math *math)
+static void	draw2(t_myimg *img, t_math *math)
 {
 	if (math->j < img->width - 1)
 	{
@@ -98,8 +105,6 @@ static void	draw2(/* int i, int j,  */t_myimg *img, t_math *math)
 void	draw(t_myimg *img)
 {
 	t_math	math;
-	// int		i;
-	// int		j;
 
 	math.i = 0;
 	while (math.i < img->height)
@@ -107,7 +112,7 @@ void	draw(t_myimg *img)
 		math.j = 0;
 		while (math.j < img->width)
 		{
-			draw2(/* &math.i, &math.j,  */img, &math);
+			draw2(img, &math);
 			math.j++;
 		}
 		math.i++;

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 22:08:06 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:42:13 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,14 @@ typedef struct s_math
 	int		i;
 	int		j;
 	double	x;
-	double	y;
 	double	x1;
+	double	angle_x;
+	double	y;
 	double	y1;
+	double	angle_y;
+	double	z;
+	double	z1;
+	double	angle_z;
 	int		dx;
 	int		dy;
 	int		err;
@@ -96,6 +101,7 @@ void	to_southeast(t_myimg img, t_math *math, int color);
 void	handle_input(t_myimg *img);
 int		close_all(t_myimg *img);
 void	ft_backtoblack(t_myimg *img);
+int		error_control(int ac, char **av);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:59:03 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 16:47:07 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:15:55 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ char			*get_next_line(int fd);
 void			*ft_realoc(void *ptr, size_t old_size, size_t size);
 int				ft_atoi_base(const char *str, int base);
 int				count_words(const char *str, char c);
+int				ft_strrcmp(const char *s1, const char *s2, size_t n);
 
 #endif
