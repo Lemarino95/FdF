@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:17:42 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/28 19:49:08 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:40:38 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
  
 void	define_vars(t_myimg *img)
 {
-	t_math	math;
-
-	img->zoom = 20;//##########ZooM#############
+	img->zoom = 20;
 	img->t_x = 0;
 	img->t_y = 0;
-	math.angle_x = 0.523599;//modificare ft_isometry per passargli t_math
-	math.angle_y = 0.523599;
-	// math.angle_z = 
+	img->angle_x = 6;
+	img->angle_y = 0.3;
+	img->angle_z = 0.01;
 }
+
+
 
 int	main(int ac, char **av)
 {
 	t_myimg	img;
 
-	error_control(ac, av);
+	arg_num_check(ac, av);
 	img.mlx_ptr = mlx_init();
 	if (img.mlx_ptr == NULL)
 		return (0);
@@ -40,11 +40,10 @@ int	main(int ac, char **av)
 		&img.line_length, &img.endian);
 	define_vars(&img);
 	handle_input(&img);
-	img.map = cartography(av[1], 1);
-	img.colmap = cartography(av[1], 2);
+	img.map = cartography(av[1], 1, &img);
+	img.colmap = cartography(av[1], 2, &img);
 	img.height = get_height(av[1]);
 	img.width = get_width(av[1]);
-	printf(YELLOW "Map size(h*w) = %dx%d\n" NO_COLOR, img.height, img.width);//################
 	draw(&img);
 	mlx_put_image_to_window(img.mlx_ptr, img.mlx_win, img.nimg, 0, 0);
 	mlx_loop(img.mlx_ptr);

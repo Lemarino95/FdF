@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/28 19:42:13 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:40:27 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MACROS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~VARs~~~~~~~~~~~~~~~~*/
-# define WIN_LEN 1600
-# define WIN_HEIGHT 900
+# define WIN_LEN	1600
+# define WIN_HEIGHT	900
+# define M_PI		3.14159265358979323846
 
 /*~~~~~~~~~~~~~~~COLORS~~~~~~~~~~~~~~~*/
 # define NO_COLOR "\033[0m"
@@ -38,6 +39,7 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~STRUCTS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 typedef struct s_myimg
 {
 	void		*mlx_ptr;
@@ -47,13 +49,16 @@ typedef struct s_myimg
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			zoom;
-	int			t_x;
-	int			t_y;
 	int			**map;
 	int			**colmap;
 	int			height;
 	int			width;
+	int			zoom;//         Scale modifier
+	int			t_x;//     Traslation modifier
+	int			t_y;//     Traslation modifier
+	double		angle_x;//   Rotation modifier
+	double		angle_y;//   Rotation modifier
+	double		angle_z;//   Rotation modifier
 }	t_myimg;
 
 // Used while reading the map from the .fdf file
@@ -72,13 +77,10 @@ typedef struct s_math
 	int		j;
 	double	x;
 	double	x1;
-	double	angle_x;
 	double	y;
 	double	y1;
-	double	angle_y;
 	double	z;
 	double	z1;
-	double	angle_z;
 	int		dx;
 	int		dy;
 	int		err;
@@ -88,8 +90,7 @@ typedef struct s_math
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-int		rgb_to_int(double r, double g, double b);
-int		**cartography(char *map_file, int select);
+int		**cartography(char *map_file, int select, t_myimg *img);
 int		get_height(char *map_file);
 int		get_width(char *map_file);
 void	draw(t_myimg *img);
@@ -101,10 +102,12 @@ void	to_southeast(t_myimg img, t_math *math, int color);
 void	handle_input(t_myimg *img);
 int		close_all(t_myimg *img);
 void	ft_backtoblack(t_myimg *img);
-int		error_control(int ac, char **av);
+int		arg_num_check(int ac, char **av);
+void	permission_check(t_read *mapper, t_myimg *img);
+void	rotate_coords(t_myimg *img, t_math *math);
+void	ft_setscale(t_myimg *img, t_math *math);
+void	rotate_axis(int keysym, t_myimg *img);
 
 #endif
 
 // valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all 
-
-// /usr/include/X11/keysymdef.h

@@ -3,8 +3,9 @@ CFLAGS = -Wall -Wextra -Werror -g
 NAME = fdf
 OBJ_DIR = obj
 
-SRC_MAIN = fdf_readmap.c fdf_mapsizes.c fdf_main.c fdf_algorithm.c\
-			fdf_drawline.c fdf_hooks.c	fdf_closure.c error_control.c
+SRC_MAIN = fdf_readmap.c fdf_mapsizes.c fdf_main.c fdf_algorithm.c \
+			fdf_drawline.c fdf_hooks.c	fdf_closure.c error_control.c \
+			fdf_rotatecoords.c fdf_rotateaxis.c 
 
 
 OBJECTS_MAIN = $(SRC_MAIN:%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:33:04 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/28 18:15:54 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:41:01 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	extension_check(char *filename)
 	return (1);
 }
 
-int	error_control(int ac, char **av)
+int	arg_num_check(int ac, char **av)
 {
 	int	flag;
 
@@ -36,4 +36,13 @@ int	error_control(int ac, char **av)
 	}
 	flag += extension_check(av[1]);
 	return (flag);
+}
+
+void	permission_check(t_read *mapper, t_myimg *img)
+{
+	if (mapper->fd < 0)
+	{
+		perror(RED"ERR: Permission denied by .fdf file."NO_COLOR);
+		close_all(img);
+	}
 }

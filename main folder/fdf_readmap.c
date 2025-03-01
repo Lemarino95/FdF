@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:29:27 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 16:49:50 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:39:23 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ int	**col_mtrx_creator(t_read *mapper, int **map)
 	int		j;
 
 	i = 0;
-	while (1)
+	mapping.line = get_next_line(mapper->fd);
+	while (mapping.line)
 	{
-		mapping.line = get_next_line(mapper->fd);
-		if (!mapping.line)
-			break ;
 		j = 0;
 		map = ft_realoc(map, ((i) * sizeof(int *)), ((i + 1) * sizeof(int *)));
 		mapping.line2 = ft_strtrim(mapping.line, "\n");
@@ -61,6 +59,7 @@ int	**col_mtrx_creator(t_read *mapper, int **map)
 		i++;
 		free(mapping.line2);
 		freesplit(mapping.splitted_line);
+		mapping.line = get_next_line(mapper->fd);
 	}
 	return (map);
 }
@@ -96,13 +95,20 @@ int	**z_mtrx_creator(t_read *mapper, int **map)
 }
 
 //Initializes and returns the map matrix.
-int	**cartography(char *map_file, int select)
+int	**cartography(char *map_file, int select, t_myimg *img)
 {
 	t_read	mapper;
 	int		**map;
 
 	map = NULL;
 	mapper.fd = open(map_file, O_RDONLY);
+	/* if (mapper.fd < 0)
+	{
+		perror(RED"ERR: Permission denied by .fdf file."NO_COLOR);
+		close_all(img);
+		return (0);
+	} */
+	permission_check(&mapper, img);
 	if (select == 1)
 		map = z_mtrx_creator(&mapper, map);
 	else if (select == 2)

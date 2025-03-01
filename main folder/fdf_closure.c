@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:41:03 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/28 17:22:35 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:33:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	close_all(t_myimg *img)
 }
 
 // Puts all pixels on the window to black (love to Amy W. <3)
-void	ft_backtoblack(t_myimg *img)// vedere mlx_do_sync()
+void	ft_backtoblack(t_myimg *img)
 {
 	double	x;
 	double	y;
@@ -56,7 +56,7 @@ void	ft_backtoblack(t_myimg *img)// vedere mlx_do_sync()
 		{
 			dst = img->addr + ((int)y * img->line_length + \
 							(int)x * (img->bits_per_pixel / 8));
-			*(unsigned int *)dst = rgb_to_int(0, 0, 0);
+			*(unsigned int *)dst = 000000;
 			x++;
 		}
 		y++;
