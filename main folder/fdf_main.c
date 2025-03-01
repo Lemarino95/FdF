@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:17:42 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 15:40:38 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 23:32:42 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int	main(int ac, char **av)
 	img.width = get_width(av[1]);
 	draw(&img);
 	mlx_put_image_to_window(img.mlx_ptr, img.mlx_win, img.nimg, 0, 0);
+	mlx_string_put(img.mlx_ptr, img.mlx_win, 300, 300, 0x9FFF9F, "CI SEI QUASI<3");
 	mlx_loop(img.mlx_ptr);
 }

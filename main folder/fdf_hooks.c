@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:19:55 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 18:41:58 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 23:50:01 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	zooming(int keysym, t_myimg *img)
 		mlx_do_sync(img->mlx_ptr); // Dovrebbe ridurre il fluttering
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
-	else if (keysym == XK_f && img->zoom > 2)
+	else if (keysym == XK_f)
 	{
 		img->zoom -= 1;
 		ft_backtoblack(img);
@@ -87,6 +87,7 @@ static int	handle_key(int keysym, void *param)
 			free_maps(img);
 			close_all(img);
 		}
+	// mlx_string_put(img->mlx_ptr, img->mlx_win, 300, 300, 0x9FFF9F, "CI SEI QUASI<3");
 	return (0);
 }
 
