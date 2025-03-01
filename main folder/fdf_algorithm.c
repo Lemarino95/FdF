@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 17:25:46 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:23:45 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ft_bresenham(t_myimg *img, t_math *math, int color)
 	math->z = img->map[(int)math->y][(int)math->x];
 	math->z1 = img->map[(int)math->y1][(int)math->x1];
 	rotate_coords(img, math);
-	printf(GREEN"%F\n"NO_COLOR, img->angle_x);//#################
-	printf(MAGENTA"%F\n"NO_COLOR, img->angle_y);//#################
-	printf(CYAN"%F\n"NO_COLOR, img->angle_z);//#################
+	// printf(GREEN"%F\n"NO_COLOR, img->angle_x);//#################
+	// printf(MAGENTA"%F\n"NO_COLOR, img->angle_y);//#################
+	// printf(CYAN"%F\n"NO_COLOR, img->angle_z);//#################
 	ft_isometry(&math->x, &math->y, &math->z, img);
 	ft_isometry(&math->x1, &math->y1, &math->z1, img);
 	ft_setscale(img, math);

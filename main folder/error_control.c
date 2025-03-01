@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:33:04 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 15:41:01 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:31:57 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	permission_check(t_read *mapper, t_myimg *img)
 	if (mapper->fd < 0)
 	{
 		perror(RED"ERR: Permission denied by .fdf file."NO_COLOR);
-		close_all(img);
+		mlx_destroy_image(img->mlx_ptr, img->nimg);
+		mlx_destroy_window(img->mlx_ptr, img->mlx_win);
+		mlx_destroy_display(img->mlx_ptr);
+		free(img->mlx_ptr);
+		exit (0);
 	}
 }

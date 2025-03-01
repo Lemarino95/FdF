@@ -6,24 +6,24 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:29:27 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 15:39:23 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 21:11:41 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static char	**freesplit(char **s)
+int	map_setup(t_read *mapping, int **map, int i, int j)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-	return (NULL);
+	while (mapping->splitted_line[j])
+		{
+			map[i][j] = ft_atoi(mapping->splitted_line[j]);
+			j++;
+		}
+	return (j);
+/* 	map = ft_realoc(map, ((i) * sizeof(int *)), ((i + 1) * sizeof(int *)));
+	mapping->line2 = ft_strtrim(mapping->line, "\n");
+	mapping->splitted_line = ft_split(mapping->line2, ' ');
+	map[i] = malloc(count_words(mapping->line2, ' ') * sizeof(int)); */
 }
 
 static int	convert_hexa(char *str)
@@ -36,7 +36,7 @@ static int	convert_hexa(char *str)
 
 //Converts each number following a comma in the map file in an int and returns
 // it as a matrix of color values.
-int	**col_mtrx_creator(t_read *mapper, int **map)
+static int	**col_mtrx_creator(t_read *mapper, int **map)
 {
 	t_read	mapping;
 	int		i;
@@ -66,7 +66,7 @@ int	**col_mtrx_creator(t_read *mapper, int **map)
 
 //Converts each number of the map file in an int and returns it as
 // a matrix of z-axis values.
-int	**z_mtrx_creator(t_read *mapper, int **map)
+static int	**z_mtrx_creator(t_read *mapper, int **map, t_myimg *img)
 {
 	t_read	mapping;
 	int		i;
@@ -74,6 +74,11 @@ int	**z_mtrx_creator(t_read *mapper, int **map)
 
 	i = 0;
 	mapping.line = get_next_line(mapper->fd);
+	if (!mapping.line)
+	{
+		perror(RED"File is empty."NO_COLOR);
+		close_all(img);
+	}
 	while (mapping.line)
 	{
 		j = 0;
@@ -81,11 +86,7 @@ int	**z_mtrx_creator(t_read *mapper, int **map)
 		mapping.line2 = ft_strtrim(mapping.line, "\n");
 		mapping.splitted_line = ft_split(mapping.line2, ' ');
 		map[i] = malloc(count_words(mapping.line2, ' ') * sizeof(int));
-		while (mapping.splitted_line[j])
-		{
-			map[i][j] = ft_atoi(mapping.splitted_line[j]);
-			j++;
-		}
+		j = map_setup(&mapping, map, i, j);
 		i++;
 		free(mapping.line2);
 		freesplit(mapping.splitted_line);
@@ -102,15 +103,9 @@ int	**cartography(char *map_file, int select, t_myimg *img)
 
 	map = NULL;
 	mapper.fd = open(map_file, O_RDONLY);
-	/* if (mapper.fd < 0)
-	{
-		perror(RED"ERR: Permission denied by .fdf file."NO_COLOR);
-		close_all(img);
-		return (0);
-	} */
 	permission_check(&mapper, img);
 	if (select == 1)
-		map = z_mtrx_creator(&mapper, map);
+		map = z_mtrx_creator(&mapper, map, img);
 	else if (select == 2)
 		map = col_mtrx_creator(&mapper, map);
 	close (mapper.fd);

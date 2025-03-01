@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:41:03 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 13:33:34 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:50:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ static void	freemap(int **map, t_myimg *img)
 	return ;
 }
 
+int	free_maps(t_myimg *img)
+{
+	freemap(img->map, img);
+	freemap(img->colmap, img);
+	return (0);
+}
+
 int	close_all(t_myimg *img)
 {
 	mlx_destroy_image(img->mlx_ptr, img->nimg);
 	mlx_destroy_window(img->mlx_ptr, img->mlx_win);
 	mlx_destroy_display(img->mlx_ptr);
 	free(img->mlx_ptr);
-	freemap(img->map, img);
-	freemap(img->colmap, img);
 	exit (0);
 	return (0);
 }
@@ -61,4 +66,18 @@ void	ft_backtoblack(t_myimg *img)
 		}
 		y++;
 	}
+}
+
+char	**freesplit(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
 }

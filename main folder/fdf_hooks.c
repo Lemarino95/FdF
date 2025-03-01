@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:19:55 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 14:25:45 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:41:58 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ static int	handle_key(int keysym, void *param)
 					keysym == XK_s || keysym == XK_e || keysym == XK_q)
 		rotate_axis(keysym, img);
 	else if (keysym == XK_Escape || keysym == XK_Delete)
-		close_all(img);
+		{
+			free_maps(img);
+			close_all(img);
+		}
 	return (0);
 }
 

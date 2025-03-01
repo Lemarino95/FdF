@@ -23,7 +23,7 @@ RED = \033[31m
 GREEN = \033[32m
 YELLOW = \033[33m
 
-all: $(NAME)
+all: $(LIBFT) $(MINILIBX) $(NAME)
 	@echo "$(GREEN)Object files created!$(NO_COLOR)"
 
 $(OBJ_DIR):

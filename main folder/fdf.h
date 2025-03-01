@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 15:40:27 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/01 18:48:46 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void	to_southwest(t_myimg img, t_math *math, int color);
 void	to_southeast(t_myimg img, t_math *math, int color);
 void	handle_input(t_myimg *img);
 int		close_all(t_myimg *img);
+int		free_maps(t_myimg *img);
+char	**freesplit(char **s);
 void	ft_backtoblack(t_myimg *img);
 int		arg_num_check(int ac, char **av);
 void	permission_check(t_read *mapper, t_myimg *img);

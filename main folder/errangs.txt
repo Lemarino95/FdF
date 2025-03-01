@@ -1,0 +1,39 @@
+angle_x: 6.000000
+angle_y: 0.100000
+angle_z: -2.326815
+
+angle_x: 4.730000
+angle_y: 0.300000
+angle_z: 0.010000
+
+angle_x: 4.520000
+angle_y: -0.050000
+angle_z: 0.010000
+
+angle_x: 4.720000
+angle_y: -0.360000
+angle_z: 0.010000
+
+angle_x: -0.766815
+angle_y: -5.920000
+angle_z: 0.010000
+
+angle_x: 1.556815
+angle_y: 0.290000
+angle_z: 0.010000
+
+angle_x: 5.590000
+angle_y: -5.830000
+angle_z: 0.010000
+
+angle_x:
+angle_y:
+angle_z:
+
+angle_x:
+angle_y:
+angle_z:
+
+angle_x:
+angle_y:
+angle_z:
