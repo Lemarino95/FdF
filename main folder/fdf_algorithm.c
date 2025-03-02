@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 23:34:08 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:39:23 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	ft_setdirection(t_math *math)
 }
 
 // main body of the algorithm to trace a line from xy to x1y1.
-void	ft_bresenham(t_myimg *img, t_math *math, int color)
+void	iso_bresenham(t_myimg *img, t_math *math, int color)
 {
 	math->z = img->map[(int)math->y][(int)math->x];
 	math->z1 = img->map[(int)math->y1][(int)math->x1];
@@ -82,7 +82,7 @@ static void	draw2(t_myimg *img, t_math *math)
 		math->y = math->i;
 		math->x1 = math->j + 1;
 		math->y1 = math->i;
-		ft_bresenham(img, math, img->colmap[math->i][math->j]);
+		iso_bresenham(img, math, img->colmap[math->i][math->j]);
 	}
 	if (math->i < img->height - 1)
 	{
@@ -90,12 +90,12 @@ static void	draw2(t_myimg *img, t_math *math)
 		math->y = math->i;
 		math->x1 = math->j;
 		math->y1 = math->i + 1;
-		ft_bresenham(img, math, img->colmap[math->i][math->j]);
+		iso_bresenham(img, math, img->colmap[math->i][math->j]);
 	}
 }
 
 //Loops through each point on the map.
-void	draw(t_myimg *img)
+void	draw(t_myimg *img)//proj_flag: 1 = isometrica, 2 = stereografica
 {
 	t_math	math;
 

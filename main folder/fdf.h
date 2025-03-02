@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 11:55:34 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:38:01 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_myimg
 	double		angle_x;//   Rotation modifier
 	double		angle_y;//   Rotation modifier
 	double		angle_z;//   Rotation modifier
+	int			proj_flag;// Projection selector
 }	t_myimg;
 
 // Used while reading the map from the .fdf file
@@ -94,7 +95,8 @@ int		**cartography(char *map_file, int select, t_myimg *img);
 int		get_height(char *map_file);
 int		get_width(char *map_file);
 void	draw(t_myimg *img);
-void	ft_bresenham(t_myimg *img, t_math *math, int color);
+void	iso_bresenham(t_myimg *img, t_math *math, int color);
+void	stereo_bresenham(t_myimg *img, t_math *math, int color);
 void	to_northwest(t_myimg img, t_math *math, int color);
 void	to_northeast(t_myimg img, t_math *math, int color);
 void	to_southwest(t_myimg img, t_math *math, int color);
