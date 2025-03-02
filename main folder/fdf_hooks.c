@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:19:55 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 23:50:01 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 11:55:43 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	zooming(int keysym, t_myimg *img)
 		mlx_do_sync(img->mlx_ptr); // Dovrebbe ridurre il fluttering
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
-	else if (keysym == XK_f)
+	else if (keysym == XK_f && img->zoom > 1)
 	{
 		img->zoom -= 1;
 		ft_backtoblack(img);
@@ -39,6 +39,7 @@ static void	traslate_y(int keysym, t_myimg *img)
 		img->t_y += 5;
 		ft_backtoblack(img);
 		draw(img);
+		mlx_do_sync(img->mlx_ptr);
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
 	if (keysym == XK_Up)
@@ -46,6 +47,7 @@ static void	traslate_y(int keysym, t_myimg *img)
 		img->t_y -= 5;
 		ft_backtoblack(img);
 		draw(img);
+		mlx_do_sync(img->mlx_ptr);
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
 }
@@ -57,6 +59,7 @@ static void	traslate_x(int keysym, t_myimg *img)
 		img->t_x += 5;
 		ft_backtoblack(img);
 		draw(img);
+		mlx_do_sync(img->mlx_ptr);
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
 	if (keysym == XK_Left)
@@ -64,6 +67,7 @@ static void	traslate_x(int keysym, t_myimg *img)
 		img->t_x -= 5;
 		ft_backtoblack(img);
 		draw(img);
+		mlx_do_sync(img->mlx_ptr);
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
 }
@@ -87,7 +91,8 @@ static int	handle_key(int keysym, void *param)
 			free_maps(img);
 			close_all(img);
 		}
-	// mlx_string_put(img->mlx_ptr, img->mlx_win, 300, 300, 0x9FFF9F, "CI SEI QUASI<3");
+	// mlx_string_put(img->mlx_ptr, img->mlx_win, 25, 100, 0x9FFF9F, "Arrow keys: traslate");
+	put_message(img);
 	return (0);
 }
 

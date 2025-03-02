@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:35:54 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 16:36:45 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 11:42:40 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ static void	rotate_horizontal(int keysym, t_myimg *img)
 		img->angle_x += 0.01;
 	if (keysym == XK_a)
 		img->angle_x -= 0.01;
-	if (img->angle_x > 2 * M_PI)//1.556815
+	if (img->angle_x > 2 * M_PI)
 		img->angle_x -= 2 * M_PI;
 	if (img->angle_x < -2 * M_PI)
 		img->angle_x += 2 * M_PI;
 	ft_backtoblack(img);
 	draw(img);
+	mlx_do_sync(img->mlx_ptr);
 	mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 }
 
@@ -39,6 +40,7 @@ static void	rotate_vertical(int keysym, t_myimg *img)
 		img->angle_y += 2 * M_PI;
 	ft_backtoblack(img);
 	draw(img);
+	mlx_do_sync(img->mlx_ptr);
 	mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 }
 
@@ -54,6 +56,7 @@ static void	rotate_plane(int keysym, t_myimg *img)
 		img->angle_z += 2 * M_PI;
 	ft_backtoblack(img);
 	draw(img);
+	mlx_do_sync(img->mlx_ptr);
 	mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 }
 

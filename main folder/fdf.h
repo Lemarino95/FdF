@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 18:48:46 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 11:55:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	permission_check(t_read *mapper, t_myimg *img);
 void	rotate_coords(t_myimg *img, t_math *math);
 void	ft_setscale(t_myimg *img, t_math *math);
 void	rotate_axis(int keysym, t_myimg *img);
+void	put_message(t_myimg *img);
 
 #endif
 
