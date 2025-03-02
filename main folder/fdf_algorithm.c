@@ -6,18 +6,18 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 12:39:23 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 20:56:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 //Applies isometric poxection.
-void	ft_isometry(double *x, double *y, double *z, t_myimg *img)
+void	ft_isometry(float *x, float *y, float *z, t_myimg *img)
 {
-	double	prev_x;
-	double	prev_y;
-	double	prev_z;
+	float	prev_x;
+	float	prev_y;
+	float	prev_z;
 
 	prev_x = *x;
 	prev_y = *y;
