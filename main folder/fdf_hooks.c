@@ -6,11 +6,13 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:19:55 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 11:55:43 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:57:15 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*~~~~~~~~~~~Functions to issue commands from keyboard~~~~~~~~~~~*/
 
 static void	zooming(int keysym, t_myimg *img)
 {
@@ -19,7 +21,7 @@ static void	zooming(int keysym, t_myimg *img)
 		img->zoom += 1;
 		ft_backtoblack(img);
 		draw(img);
-		mlx_do_sync(img->mlx_ptr); // Dovrebbe ridurre il fluttering
+		mlx_do_sync(img->mlx_ptr);
 		mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 	}
 	else if (keysym == XK_f && img->zoom > 1)
@@ -91,7 +93,6 @@ static int	handle_key(int keysym, void *param)
 			free_maps(img);
 			close_all(img);
 		}
-	// mlx_string_put(img->mlx_ptr, img->mlx_win, 25, 100, 0x9FFF9F, "Arrow keys: traslate");
 	put_message(img);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:29:27 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/01 21:11:41 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 16:55:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,28 +111,3 @@ int	**cartography(char *map_file, int select, t_myimg *img)
 	close (mapper.fd);
 	return (map);
 }
-
-/* int	main(int argc, char *argv[])
-{
-	int i = 0;
-	int j;
-	int **map= cartography(argv[1], 2);
-	int	height = get_height(argv[1]);
-	int width = get_width(argv[1]);
-	printf("%d*%d\n", height, width);
-	if (argc > 1)
-	{
-		while (i < height)
-		{
-			j = 0;
-			while (j < width)
-				{
-					printf("%2d", map[i][j]);
-					j++;
-					printf(" ");
-				}
-			printf("\n");
-			i++;
-		}
-	}
-} */

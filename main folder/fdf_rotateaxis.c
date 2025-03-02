@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:35:54 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 11:42:40 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:21:20 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	rotate_plane(int keysym, t_myimg *img)
 {
 	if (keysym == XK_e)
 		img->angle_z += 0.01;
-	if (keysym == XK_q)//-3.970000
+	if (keysym == XK_q)
 		img->angle_z -= 0.01;
 	if (img->angle_z > 2 * M_PI)
 		img->angle_z -= 2 * M_PI;
