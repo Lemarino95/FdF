@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 17:08:12 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:12:44 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_math
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 int		**cartography(char *map_file, int select, t_myimg *img);
+int		**z_mtrx_creator(t_read *mapper, int **map, t_myimg *img);
+int		**col_mtrx_creator(t_read *mapper, int **map, t_myimg *img);
 int		get_height(char *map_file);
 int		get_width(char *map_file);
 void	draw(t_myimg *img);
@@ -108,7 +110,10 @@ void	rotate_axis(int keysym, t_myimg *img);
 void	put_message(t_myimg *img);
 void	permission_check(t_read *mapper, t_myimg *img);
 int		arg_check(int ac, char **av);
+void	sizes_check(t_myimg *img);
+void	content_check(t_myimg *img);
 char	**freesplit(char **s);
+void	free_maputils(t_read *mapping);
 int		free_maps(t_myimg *img);
 int		close_all(t_myimg *img);
 

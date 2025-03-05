@@ -1,12 +1,11 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -I libft -I minilibx-linux -g
 NAME = fdf
 OBJ_DIR = obj
 
-SRC_MAIN = fdf_readmap.c fdf_mapsizes.c fdf_main.c fdf_algorithm.c \
-			fdf_drawline.c fdf_hooks.c	fdf_closure.c error_control.c \
-			fdf_rotatecoords.c fdf_rotateaxis.c 
-
+SRC_MAIN = fdf_mapsizes.c fdf_readmap.c fdf_main.c fdf_algorithm.c \
+			fdf_drawline.c fdf_hooks.c	fdf_closure.c fdf_error_controls.c \
+			fdf_rotatecoords.c fdf_rotateaxis.c fdf_matrix_creators.c
 
 OBJECTS_MAIN = $(SRC_MAIN:%.c=$(OBJ_DIR)/%.o)
 OBJECTS = $(OBJECTS_MAIN)
@@ -24,7 +23,7 @@ GREEN = \033[32m
 YELLOW = \033[33m
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
-	@echo "$(GREEN)Object files created!$(NO_COLOR)"
+
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
@@ -39,18 +38,15 @@ $(MLX_DIR):
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) --quiet
 
-$(MINILIBX): $(MLX_DIR)
+$(MINILIBX):
 	@$(MAKE) -C $(MLX_DIR) --quiet
 
-$(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -o $(NAME)
-
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	@	${CC} -c ${CFLAGS} -I. -I$(LIBFT_DIR) -I$(MLX_DIR) $< -o $@
+$(NAME): $(LIBFT) $(MINILIBX) $(SRC_MAIN)
+	$(CC) $(CFLAGS) $(SRC_MAIN) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -o $(NAME)
+	@echo "$(GREEN)Object files created!$(NO_COLOR)"
 
 clean:
 	@echo "$(YELLOW)Cleaning...$(NO_COLOR)"
-	@	rm -rf $(OBJECTS) $(OBJ_DIR)
 	@	$(MAKE) -C $(LIBFT_DIR) clean --quiet
 
 fclean: clean

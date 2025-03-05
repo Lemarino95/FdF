@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:58:44 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 20:50:52 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:45:34 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	my_pixelput(t_myimg *img, double x, double y, int color)
 {
 	char	*dst;
 
-	x += (WIN_LEN / 2) + img->t_x;
-	y += (WIN_HEIGHT / 2) + img->t_y;
+	x += (WIN_LEN / 2.5) + img->t_x;
+	y += (WIN_HEIGHT / 2.5) + img->t_y;
 	if (x < 0 || x >= WIN_LEN || y < 0 || y >= WIN_HEIGHT)
 		return ;
 	dst = img->addr + ((int)y * img->line_length + (int)x * \

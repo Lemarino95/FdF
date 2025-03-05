@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:33:04 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/02 19:51:18 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:12:09 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,22 @@ int	arg_check(int ac, char **av)
 	flag = 0;
 	if (ac != 2)
 	{
-		perror(RED"ERROR: invalid number of arguments"NO_COLOR);
+		perror(RED"ERROR: Invalid number of arguments"NO_COLOR);
 		exit(0);
 		return (0);
 	}
 	flag += extension_check(av[1]);
 	return (flag);
+}
+
+void	sizes_check(t_myimg *img)
+{
+	if (img->height == 0 || img->width == 0)
+	{
+		perror(RED"Couldn't generate map."NO_COLOR);
+		close_all(img);
+	}
+	return ;
 }
 
 void	permission_check(t_read *mapper, t_myimg *img)
@@ -49,4 +59,10 @@ void	permission_check(t_read *mapper, t_myimg *img)
 		free(img->mlx_ptr);
 		exit (0);
 	}
+}
+
+void	content_check(t_myimg *img)
+{
+	perror(RED"File is empty."NO_COLOR);
+	close_all(img);
 }
