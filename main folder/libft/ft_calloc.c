@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:37:28 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/12 18:31:07 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:50:52 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*str;
+	void			*str;
 	size_t			i;
 	unsigned char	*c;
 

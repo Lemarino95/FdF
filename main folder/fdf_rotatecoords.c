@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:09:45 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/03 16:13:56 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:36:44 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,13 @@ static void	rotate_z(float *x, float *y, float *angle)
 	*y = prev_x * sin(*angle) + prev_y * cos(*angle);
 }
 
-// Apply spherical projection to create a globe effect
-void apply_spherical_projection(float *x, float *y, float *z, float radius)
-{
-	// Convert to spherical coordinates
-	float phi = *x * M_PI;  // Longitude (-π to π)
-	float theta = *y * (M_PI / 2); // Latitude (-π/2 to π/2)
-
-	*x = radius * cos(theta) * cos(phi);
-	*y = radius * cos(theta) * sin(phi);
-	*z = radius * sin(theta);
-}
-
 void	rotate_coords(t_myimg *img, t_math *math)
 {
-	float center_x = img->width / 2.0;
-	float center_y = img->height / 2.0;
+	float	center_x;
+	float	center_y;
 
+	center_x = img->width / 2.0;
+	center_y = img->height / 2.0;
 	math->x -= center_x;
 	math->y -= center_y;
 	math->x1 -= center_x;
@@ -87,6 +77,4 @@ void	rotate_coords(t_myimg *img, t_math *math)
 	math->y += center_y;
 	math->x1 += center_x;
 	math->y1 += center_y;
-	
-	// apply_spherical_projection(&math->x, &math->y, &math->z, 100);
 }

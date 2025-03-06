@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_algorithm.c                                    :+:      :+:    :+:   */
+/*   fdf_topview.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:19:09 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/06 12:32:51 by lemarino         ###   ########.fr       */
+/*   Created: 2025/03/06 12:08:51 by lemarino          #+#    #+#             */
+/*   Updated: 2025/03/06 12:57:09 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-//Applies isometric poxection.
-void	ft_isometry(float *x, float *y, float *z, t_myimg *img)
-{
-	float	prev_x;
-	float	prev_y;
-	float	prev_z;
-
-	prev_x = *x;
-	prev_y = *y;
-	prev_z = *z;
-	*x = (prev_x - prev_y) * cos(img->angle_x);
-	*y = (prev_x + prev_y) * sin(img->angle_y) - prev_z;
-	*z = prev_z * cos(img->angle_z) - prev_x * sin(img->angle_z);
-}
 
 // Determines in which direction the line is to be drawn.
 static void	ft_setdirection(t_math *math)
@@ -39,13 +24,11 @@ static void	ft_setdirection(t_math *math)
 }
 
 // main body of the algorithm to trace a line from xy to x1y1.
-static void	iso_bresenham(t_myimg *img, t_math *math, int color)
+static void	bresenham(t_myimg *img, t_math *math, int color)
 {
 	math->z = img->map[(int)math->y][(int)math->x];
 	math->z1 = img->map[(int)math->y1][(int)math->x1];
 	rotate_coords(img, math);
-	ft_isometry(&math->x, &math->y, &math->z, img);
-	ft_isometry(&math->x1, &math->y1, &math->z1, img);
 	ft_setscale(img, math);
 	math->dx = fabs(math->x1 - math->x);
 	math->dy = fabs(math->y1 - math->y);
@@ -74,7 +57,7 @@ static void	draw2(t_myimg *img, t_math *math)
 		math->x1 = math->j + 1;
 		math->y1 = math->i;
 		if (img->colmap[math->i][math->j])
-			iso_bresenham(img, math, img->colmap[math->i][math->j]);
+			bresenham(img, math, img->colmap[math->i][math->j]);
 	}
 	if (math->i < img->height - 1)
 	{
@@ -83,12 +66,12 @@ static void	draw2(t_myimg *img, t_math *math)
 		math->x1 = math->j;
 		math->y1 = math->i + 1;
 		if (img->colmap[math->i][math->j])
-			iso_bresenham(img, math, img->colmap[math->i][math->j]);
+			bresenham(img, math, img->colmap[math->i][math->j]);
 	}
 }
 
 //Loops through each point on the map.
-void	draw(t_myimg *img)//proj_flag: 1 = isometrica, 2 = stereografica
+static void	draw_noisometry(t_myimg *img)
 {
 	t_math	math;
 
@@ -103,4 +86,15 @@ void	draw(t_myimg *img)//proj_flag: 1 = isometrica, 2 = stereografica
 		}
 		math.i++;
 	}
+}
+
+void	set_topview(t_myimg *img)
+{
+	img->angle_x = -0.003179;
+	img->angle_y = 0.000001;
+	img->angle_z = 0.002346;
+	ft_backtoblack(img);
+	draw_noisometry(img);
+	mlx_do_sync(img->mlx_ptr);
+	mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
 }

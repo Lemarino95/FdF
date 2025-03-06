@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_hex.c                                      :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 14:53:35 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/26 11:53:28 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:53:15 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ static int	is_blank(char c)
 	return (0);
 }
 
-static int		isvalid(char c, int base)
+static int	isvalid(char c, int base)
 {
-	char digits[17] = "0123456789abcdef";
-	char digits2[17] = "0123456789ABCDEF";
+	char	*digits;
+	char	*digits2;
 
+	digits = "0123456789abcdef";
+	digits2 = "0123456789ABCDEF";
 	while (base--)
 		if (digits[base] == c || digits2[base] == c)
 			return (1);
 	return (0);
 }
 
-static int		value_of(char c)
+static int	value_of(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -41,10 +43,10 @@ static int		value_of(char c)
 	return (0);
 }
 
-int		ft_atoi_base(const char *str, int base)
+int	ft_atoi_base(const char *str, int base)
 {
-	int result;
-	int sign;
+	int	result;
+	int	sign;
 	int	i;
 
 	i = 0;
@@ -56,7 +58,7 @@ int		ft_atoi_base(const char *str, int base)
 	{
 		if (str[i] == '-')
 			sign = -1;
-		i++;	
+		i++;
 	}
 	while (isvalid(str[i], base))
 	{

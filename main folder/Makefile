@@ -5,7 +5,8 @@ OBJ_DIR = obj
 
 SRC_MAIN = fdf_mapsizes.c fdf_readmap.c fdf_main.c fdf_algorithm.c \
 			fdf_drawline.c fdf_hooks.c	fdf_closure.c fdf_error_controls.c \
-			fdf_rotatecoords.c fdf_rotateaxis.c fdf_matrix_creators.c
+			fdf_rotatecoords.c fdf_rotateaxis.c fdf_matrix_creators.c \
+			fdf_topview.c
 
 OBJECTS_MAIN = $(SRC_MAIN:%.c=$(OBJ_DIR)/%.o)
 OBJECTS = $(OBJECTS_MAIN)

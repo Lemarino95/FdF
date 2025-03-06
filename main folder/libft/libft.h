@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:59:03 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/28 15:15:55 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:38:51 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdarg.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
 
 typedef struct s_list

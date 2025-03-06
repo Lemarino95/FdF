@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:17:12 by lemarino          #+#    #+#             */
-/*   Updated: 2025/02/05 16:31:59 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:46:53 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_printf(const char *input, ...)
 
 	i = 0;
 	printed = 0;
-	va_start(arg, input);	
+	va_start(arg, input);
 	if (!input)
 		return (-1);
 	while (input[i])

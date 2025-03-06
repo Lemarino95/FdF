@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:19:55 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/05 22:43:23 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:55:24 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,6 @@ static void	traslate_x(int keysym, t_myimg *img)
 	}
 }
 
-void	set_topview(t_myimg *img)
-{
-	img->angle_x = -0.003179;
-	img->angle_y = 0.000001;
-	img->angle_z = 0.002346;
-	ft_backtoblack(img);
-	draw(img);
-	mlx_do_sync(img->mlx_ptr);
-	mlx_put_image_to_window(img->mlx_ptr, img->mlx_win, img->nimg, 0, 0);
-}
-
 static int	handle_key(int keysym, void *param)
 {
 	t_myimg	*img;
@@ -99,13 +88,13 @@ static int	handle_key(int keysym, void *param)
 	else if (keysym == XK_d || keysym == XK_a || keysym == XK_w || \
 					keysym == XK_s || keysym == XK_e || keysym == XK_q)
 		rotate_axis(keysym, img);
-	else if (keysym == XK_p)
+	else if (keysym == XK_c)
 		set_topview(img);
 	else if (keysym == XK_Escape || keysym == XK_Delete)
-		{
-			free_maps(img);
-			close_all(img);
-		}
+	{
+		free_maps(img);
+		close_all(img);
+	}
 	put_message(img);
 	return (0);
 }

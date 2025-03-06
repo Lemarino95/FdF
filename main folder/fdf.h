@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:00:15 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/05 22:12:44 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:54:33 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_myimg
 	float		angle_x;//   Rotation modifier
 	float		angle_y;//   Rotation modifier
 	float		angle_z;//   Rotation modifier
-	int			proj_flag;// Projection selector
 }	t_myimg;
 
 // Used while reading the map from the .fdf file
@@ -96,9 +95,9 @@ int		**z_mtrx_creator(t_read *mapper, int **map, t_myimg *img);
 int		**col_mtrx_creator(t_read *mapper, int **map, t_myimg *img);
 int		get_height(char *map_file);
 int		get_width(char *map_file);
+void	define_vars(t_myimg *img);
 void	draw(t_myimg *img);
 void	ft_backtoblack(t_myimg *img);
-void	stereo_bresenham(t_myimg *img, t_math *math, int color);
 void	rotate_coords(t_myimg *img, t_math *math);
 void	ft_setscale(t_myimg *img, t_math *math);
 void	to_northwest(t_myimg img, t_math *math, int color);
@@ -107,6 +106,7 @@ void	to_southwest(t_myimg img, t_math *math, int color);
 void	to_southeast(t_myimg img, t_math *math, int color);
 void	handle_input(t_myimg *img);
 void	rotate_axis(int keysym, t_myimg *img);
+void	set_topview(t_myimg *img);
 void	put_message(t_myimg *img);
 void	permission_check(t_read *mapper, t_myimg *img);
 int		arg_check(int ac, char **av);

@@ -6,7 +6,7 @@
 /*   By: lemarino <lemarino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 13:35:54 by lemarino          #+#    #+#             */
-/*   Updated: 2025/03/05 22:26:59 by lemarino         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:36:02 by lemarino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,5 @@ void	rotate_axis(int keysym, t_myimg *img)
 	else if (keysym == XK_w || keysym == XK_s)
 		rotate_vertical(keysym, img);
 	else if (keysym == XK_e || keysym == XK_q)
-	rotate_plane(keysym, img);
-	printf(GREEN"angolo x: %f\n"NO_COLOR, img->angle_x);//####################
-	printf(MAGENTA"angolo y: %f\n"NO_COLOR, img->angle_y);//####################
-	printf(CYAN"angolo z: %f\n"NO_COLOR, img->angle_z);//####################
+		rotate_plane(keysym, img);
 }
