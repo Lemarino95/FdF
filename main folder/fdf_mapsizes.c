@@ -41,11 +41,9 @@ int	get_width(char *map_file)
 {
 	int		width;
 	int		fd;
-	int		i;
 	char	*buf;
 	char	*line;
 
-	i = 0;
 	buf = NULL;
 	line = ft_strdup("");
 	if (!line)
