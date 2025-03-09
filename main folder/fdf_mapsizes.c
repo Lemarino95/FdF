@@ -50,7 +50,7 @@ int	get_width(char *map_file)
 		return (0);
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (free(line), 0);
 	width = ft_composeline(buf, line, fd);
 	close(fd);
 	return (width);
