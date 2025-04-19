@@ -24,7 +24,7 @@ static void	convert_hexa(t_read *mapping, int **map, int i)
 			map[i][j] = ft_atoi_base \
 						(ft_strchr2(mapping->splitted_line[j], 'x'), 16);
 		else
-			map[i][j] = 48127;
+			map[i][j] = 10143743;
 		j++;
 	}
 	return ;
